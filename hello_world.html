@@ -1,0 +1,123 @@
+<html>
+<head>
+<title> space </title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+
+<style>
+#sun_image{
+position: absolute; 
+top: 50%; 
+left: 50%; 
+transform: translate(-50%, -50%); 
+-webkit-filter: drop-shadow(0px 0px 25px #FFA500); // тень для png-рисунка
+filter: drop-shadow(0px 0px 25px #FFA500); // тень для png-рисунка
+}
+
+#earth_image{
+position: absolute; 
+top: 50%; 
+left: 50%; 
+transform: translate(-50%, -50%); 
+-webkit-filter: drop-shadow(2px 5px 7px #4682B4); // тень для png-рисунка
+filter: drop-shadow(2px 5px 7px #4682B4); // тень для png-рисунка
+}
+
+body{
+background: url(res/star.jpg); 
+}
+
+.container {
+text-align: center;
+color: red;
+text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+}
+
+.centered {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+#demo {
+position: absolute;
+top: 10%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-family: "Pacifico", sans-serif;
+font-size: 40px;
+color: red;
+}
+
+.rotate {
+animation: rotation 70s infinite linear;
+}
+@keyframes rotation {
+from {
+transform: rotate(359deg);
+}
+to {
+transform: rotate(0deg);
+
+}
+}
+
+.orbit{
+animation: orbition 15s infinite linear;
+}
+@keyframes orbition {
+from {
+transform: rotate(0deg) translateX(370px) translateY(120px) rotate(0deg);
+}
+to {
+transform: rotate(360deg) translateX(370px) translateY(120px) rotate(-360deg);
+
+}
+}
+
+</style>
+<script>
+var flag=false;
+function playAudio(url) {
+if (!flag){
+ var audio = new Audio(url);
+ audio.loop=true;
+ audio.play();
+ flag=true;
+ }
+}
+</script>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="sun_image">
+<img src="res/sunn1.png" class="rotate" width=75% height=auto>
+</div>
+
+<div id="earth_image">
+<img src="res/earth1.webp" class="orbit" width=15% height=auto>
+</div>
+
+<div id="hello_world">
+<div class="centered">
+<h1 onclick="playAudio('res/space.mp3')">Hello, World !</h1> 
+</div>
+</div>
+
+</div>
+
+<p id="demo"></p>
+
+<script>
+document.getElementById("earth_image").addEventListener("click", function() {
+ document.getElementById("demo").innerHTML = "Welcome to Earth";
+});
+</script>
+
+</body>
+
+</html>
